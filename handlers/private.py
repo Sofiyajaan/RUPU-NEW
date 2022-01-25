@@ -24,7 +24,7 @@ Dᴇᴠᴇʟᴏᴘᴇᴅ Bʏ : [𝚂•4•𝚂𝚑𝚒𝚟](https://t.me/shivam
                         "🔥Aɴʏ Pʀᴏʙʟᴇᴍ ", url="https://t.me/shivamdemon"
                     ),
                     InlineKeyboardButton(
-                        "🐬 Gʀᴏᴜᴘ ", url="https://t.me/Love_live_laughk"
+                        "🐬 Gʀᴏᴜᴘ ", url="https://t.me/amazingnights"
                     )
                 ],[ 
                     InlineKeyboardButton(
