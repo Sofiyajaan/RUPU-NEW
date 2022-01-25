@@ -11,7 +11,7 @@ def time_to_seconds(time):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(':'))))
 
 
-@Client.on_message(filters.command('song') & ~filters.private & ~filters.channel)
+@Client.on_message(filters.command("song","/song","!song") & ~filters.private & ~filters.channel)
 def song(client, message):
 
     user_id = message.from_user.id 
@@ -68,20 +68,4 @@ def song(client, message):
     except Exception as e:
         print(e)
 
-
-@Client.on_message(command(["lyric", f"lyric@{bn}"]))
-async def lyrics(_, message):
-    try:
-        if len(message.command) < 2:
-            await message.reply_text("» **ɢɪᴠᴇ ʟʏʀɪᴄs ɴᴀᴍᴇ ᴅᴇᴀʀ.**")
-            return
-        query = message.text.split(None, 1)[1]
-        rep = await message.reply_text("**sᴇᴀʀᴄʜɪɴɢ...**")
-        resp = requests.get(
-            f"https://api-tede.herokuapp.com/api/lirik?l={query}"
-        ).json()
-        result = f"{resp['data']}"
-        await rep.edit(result)
-    except Exception:
-        await rep.edit("❌ **Nᴏ sᴜᴄʜ ʟʏʀɪᴄs ...Sᴘᴇʟʟ ᴄᴏʀʀᴇᴄᴛʟʏ.**")
 
