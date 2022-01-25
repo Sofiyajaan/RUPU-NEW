@@ -1,177 +1,313 @@
 
 
 import os
+
 from os import path
-from asyncio.queues import QueueEmpty
-from typing import Callable
+
 from pyrogram import Client, filters
+
 from pyrogram.types import Message, Voice, InlineKeyboardButton, InlineKeyboardMarkup
+
 from pyrogram.errors import UserAlreadyParticipant
-from modules.cache.admins import set
-from modules.callsmusic import callsmusic, queues
-from modules.callsmusic.callsmusic import client as USER
-from modules.helpers.admins import get_administrators
+
+from callsmusic import callsmusic, queues
+
+from callsmusic.callsmusic import client as USER
+
+from helpers.admins import get_administrators
+
 import requests
+
 import aiohttp
-import yt_dlp
+
 from youtube_search import YoutubeSearch
-from modules import converter
-from modules.downloaders import youtube
-from modules.config import DURATION_LIMIT, que, SUDO_USERS
-from modules.cache.admins import admins as a
-from modules.helpers.filters import command, other_filters
-from modules.helpers.command import commandpro
-from modules.helpers.decorators import errors, authorized_users_only
-from modules.helpers.errors import DurationLimitError
-from modules.helpers.gets import get_url, get_file_name
-from modules.helpers.channelmusic import get_chat_id
+
+import converter
+
+from datetime import datetime
+
+from time import time
+
+from downloaders import youtube
+
+from config import DURATION_LIMIT
+
+from helpers.filters import command
+
+from helpers.decorators import errors
+
+from helpers.errors import DurationLimitError
+
+from helpers.gets import get_url, get_file_name
+
 import aiofiles
+
 import ffmpeg
+
 from PIL import Image, ImageFont, ImageDraw
+
 from pytgcalls import StreamType
+
 from pytgcalls.types.input_stream import InputAudioStream
+
 from pytgcalls.types.input_stream import InputStream
 
-# plus
-chat_id = None
-useer = "NaN"
+
 
 
 
 def transcode(filename):
+
     ffmpeg.input(filename).output(
+
         "input.raw", format="s16le", acodec="pcm_s16le", ac=2, ar="48k"
+
     ).overwrite_output().run()
+
     os.remove(filename)
 
 
+
+
+
 # Convert seconds to mm:ss
+
 def convert_seconds(seconds):
+
     seconds = seconds % (24 * 3600)
+
     seconds %= 3600
+
     minutes = seconds // 60
+
     seconds %= 60
+
     return "%02d:%02d" % (minutes, seconds)
 
 
+
+
+
 # Convert hh:mm:ss to seconds
+
 def time_to_seconds(time):
+
     stringt = str(time)
+
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
+
+
+
 # Change image size
+
 def changeImageSize(maxWidth, maxHeight, image):
+
     widthRatio = maxWidth / image.size[0]
+
     heightRatio = maxHeight / image.size[1]
+
     newWidth = int(widthRatio * image.size[0])
+
     newHeight = int(heightRatio * image.size[1])
-    return image.resize((newWidth, newHeight))
+
+    newImage = image.resize((newWidth, newHeight))
+
+    return newImage
+
+
+
 
 
 async def generate_cover(requested_by, title, views, duration, thumbnail):
+
     async with aiohttp.ClientSession() as session:
+
         async with session.get(thumbnail) as resp:
+
             if resp.status == 200:
+
                 f = await aiofiles.open("background.png", mode="wb")
+
                 await f.write(await resp.read())
+
                 await f.close()
 
+
+
     image1 = Image.open("./background.png")
+
     image2 = Image.open("etc/foreground.png")
+
     image3 = changeImageSize(1280, 720, image1)
+
     image4 = changeImageSize(1280, 720, image2)
+
     image5 = image3.convert("RGBA")
+
     image6 = image4.convert("RGBA")
+
     Image.alpha_composite(image5, image6).save("temp.png")
+
     img = Image.open("temp.png")
+
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("etc/font.otf", 32)
+
+    font = ImageFont.truetype("etc/font.otf", 60)
+
     draw.text((190, 590), f"Playing ...", (0, 0, 0), font=font)  
     draw.text((190, 550), f"Title: {title}", (0, 0, 0), font=font)
+
     draw.text(
+
         (190, 670),
-        f"Powered By: S•4•Shiv(@Shivamdemon)",
-        (0, 0, 0),
+
+        f"Powered By: S4Shiv(@Shivamdemon)",
+
+        (0,0,0),
+
         font=font,
+
     )
+
     img.save("final.png")
+
     os.remove("temp.png")
+
     os.remove("background.png")
 
 
-@Client.on_message(
-    commandpro(["/play", "/ytp", "Play"])
-    & filters.group
-    & ~filters.edited
-    & ~filters.forwarded
-    & ~filters.via_bot
-)
-async def play(_, message: Message):
-    global que
-    global useer
 
-    lel = await message.reply("**Pʟᴀʏɪɴɢ...Aᴜᴅɪᴏ**")
+
+
+@Client.on_message(
+
+    command("play")
+
+    & filters.group
+
+    & ~filters.edited
+
+    & ~filters.forwarded
+
+    & ~filters.via_bot
+
+)
+
+async def play(_, message: Message):
+
+
+
+    lel = await message.reply("Pʟᴀʏɪɴɢ...Aᴜᴅɪᴏ")
+
+
 
     administrators = await get_administrators(message.chat)
+
     chid = message.chat.id
 
+
+
     try:
+
         user = await USER.get_me()
+
     except:
+
         user.first_name = "AloneMusic"
+
     usar = user
+
     wew = usar.id
+
     try:
+
         await _.get_chat_member(chid, wew)
+
     except:
+
         for administrator in administrators:
+
             if administrator == message.from_user.id:
-     
+
                 try:
+
                     invitelink = await _.export_chat_invite_link(chid)
-                    if invitelink.startswith("https://t.me/+"):
-                        invitelink = invitelink.replace("https://t.me/+","https://t.me/joinchat/")
+
                 except:
-                    await lel.edit(
-                        "⚠️ **ᴘʀᴏᴍᴏᴛᴇ ᴍᴇ ᴀs ᴀᴅᴍɪɴ ғɪʀsᴛ ⚠️**",
-                    )
+
+                    await lel.edit("⚠️ **ᴘʀᴏᴍᴏᴛᴇ ᴍᴇ ᴀs ᴀᴅᴍɪɴ ғɪʀsᴛ ⚠️**")
+
                     return
 
+
+
                 try:
+
                     await USER.join_chat(invitelink)
+
                     await USER.send_message(
-                        message.chat.id,
-                        "**ᴀssɪsᴛᴀɴᴛ ᴊᴏɪɴᴇᴅ 👍🏻 ɴᴏᴡ ᴘʟᴀʏ ʏᴏᴜʀ ᴍᴜsɪᴄ ғʀᴇᴇʟʏ** ❣️",
+
+                        message.chat.id, "**ᴀssɪsᴛᴀɴᴛ ᴊᴏɪɴᴇᴅ 👍🏻 ɴᴏᴡ ᴘʟᴀʏ ʏᴏᴜʀ ᴍᴜsɪᴄ ғʀᴇᴇʟʏ** ❣️"
+
                     )
+
+
 
                 except UserAlreadyParticipant:
+
                     pass
+
                 except Exception:
+
                     await lel.edit(
-                        f"⚠️ **ғʟᴏᴏᴅ ᴡᴀɪᴛ ᴇʀʀᴏʀ ⚠️ ᴄʜᴇᴄᴋ ᴍᴀʏʙᴇ ᴀssɪsᴛᴀɴᴛ ɪs ʙᴀɴɴᴇᴅ ᴏʀ ɴᴏᴛ ᴀᴠᴀɪʟᴀʙʟᴇ ɪɴ ᴛʜɪs ᴄʜᴀᴛ**"
+
+                        f" ⚠️ **ғʟᴏᴏᴅ ᴡᴀɪᴛ ᴇʀʀᴏʀ ⚠️ ᴄʜᴇᴄᴋ ᴍᴀʏʙᴇ ᴀssɪsᴛᴀɴᴛ ɪs ʙᴀɴɴᴇᴅ ᴏʀ ɴᴏᴛ ᴀᴠᴀɪʟᴀʙʟᴇ ɪɴ ᴛʜɪs ᴄʜᴀᴛ**."
+
                     )
+
     try:
+
         await USER.get_chat(chid)
-        # lmoa = await client.get_chat_member(chid,wew)
+
     except:
+
         await lel.edit(
+
             f"😒 **ᴀssɪsᴛᴀɴᴛ ɴᴏᴛ ᴀᴠᴀɪʟᴀʙʟᴇ ɪɴ ᴛʜɪs ᴄʜᴀᴛ sᴏ sᴇɴᴅ /userbotjoin ᴄᴏᴍᴍᴀɴᴅ ғɪʀsᴛ ᴛᴏ ᴊᴏɪɴ ᴀssɪsᴛᴀɴᴛ ʜᴇʀᴇ**"
+
         )
+
         return
 
+
+
     audio = (
+
         (message.reply_to_message.audio or message.reply_to_message.voice)
+
         if message.reply_to_message
+
         else None
+
     )
+
     url = get_url(message)
 
+
+
     if audio:
+
         if round(audio.duration / 60) > DURATION_LIMIT:
+
             raise DurationLimitError(
+
                 f"🙃 **ʜᴇʏ ʏᴏᴜʀ sᴏɴɢ ᴅᴜʀᴀᴛɪᴏɴ ɪs {DURATION_LIMIT} ᴍɪɴᴜᴛᴇs..Sᴇᴀʀᴄʜ ғᴏʀ sᴍᴀʟʟ ᴍᴜsɪᴄ.** ️🤞."
+
             )
+
+
 
         file_name = get_file_name(audio)
 
@@ -267,7 +403,7 @@ async def play(_, message: Message):
                         ),
                     ],[
                         InlineKeyboardButton(
-                            text="✌️ Gʀᴏᴜᴘ", url=f"https://t.me/Love_live_laughk"
+                            text="✌️ Gʀᴏᴜᴘ", url=f"https://t.me/amazingnights"
                         ),
                     ]
                 ]
@@ -294,7 +430,7 @@ async def play(_, message: Message):
                         ),
                     ],[
                         InlineKeyboardButton(
-                            text="✌️ Gʀᴏᴜᴘ", url=f"https://t.me/Love_live_laughk"
+                            text="✌️ Gʀᴏᴜᴘ", url=f"https://t.me/amazingnights"
                         ),
                     ]
                 ]
@@ -391,7 +527,7 @@ async def play(_, message: Message):
                         ),
                     ],[
                         InlineKeyboardButton(
-                            text="✌️ Gʀᴏᴜᴘ", url=f"https://t.me/Love_live_laughk"
+                            text="✌️ Gʀᴏᴜᴘ", url=f"https://t.me/amazingnights"
                         ),
                     ]
                 ]
