@@ -330,9 +330,9 @@ async def play(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        text="❣️ Oᴡɴᴇʀ", url=f"https://t.me/itz_rupu"
+                        text="❣️ Oᴡɴᴇʀ", url=f"https://t.me/cute_boy701"
                     ),
-                    InlineKeyboardButton(text="Sᴜᴘᴘᴏʀᴛ🎵", url=f"https://t.me/shivamdemon"),
+                    InlineKeyboardButton(text="Sᴜᴘᴘᴏʀᴛ ❣️", url=f"https://t.me/terayaarhoomai"),
                 ]
             ]
         )
@@ -399,14 +399,14 @@ async def play(_, message: Message):
                 [
                     [
                         InlineKeyboardButton(
-                            text="❣️ Oᴡɴᴇʀ", url=f"https://t.me/itz_rupu"
+                            text="❣️ Oᴡɴᴇʀ", url=f"https://t.me/cute_boy701"
                         ),
                         InlineKeyboardButton(
-                            text="Gᴇᴛ ᴍᴜsɪᴄ🎵", url=f"{durl}"
+                            text="ʟᴜᴄᴋʏ ᴄʜᴀɴɴᴇʟ ❣️", url=f"https://t.me/maxopeditz"
                         ),
                     ],[
                         InlineKeyboardButton(
-                            text="✌️ Gʀᴏᴜᴘ", url=f"https://t.me/amazingnights"
+                            text="❤️ Gʀᴏᴜᴘ ❤️", url=f"https://t.me/terayaarhoomai"
                         ),
                     ]
                 ]
@@ -426,14 +426,14 @@ async def play(_, message: Message):
                 [
                     [
                         InlineKeyboardButton(
-                            text="❣️ Oᴡɴᴇʀ", url=f"https://t.me/itz_rupu"
+                            text="❣️ Oᴡɴᴇʀ", url=f"https://t.me/cute_boy701"
                         ),
                         InlineKeyboardButton(
-                            text="Gᴇᴛ ᴍᴜsɪᴄ🎵", url=f"{durl}"
+                            text="ʟᴜᴄᴋʏ ᴄʜᴀɴɴᴇʟ ❣️", url=f"https://t.me/maxopeditz"
                         ),
                     ],[
                         InlineKeyboardButton(
-                            text="✌️ Gʀᴏᴜᴘ", url=f"https://t.me/amazingnights"
+                            text="🖤 Gʀᴏᴜᴘ 🖤", url=f"https://t.me/terayaarhoomai"
                         ),
                     ]
                 ]
@@ -523,14 +523,14 @@ async def play(_, message: Message):
                 [
                     [
                         InlineKeyboardButton(
-                            text="❣️ Oᴡɴᴇʀ", url=f"https://t.me/itz_rupu"
+                            text="❣️ Oᴡɴᴇʀ", url=f"https://t.me/cute_boy701"
                         ),
                         InlineKeyboardButton(
-                            text=" Gᴇᴛ ᴍᴜsɪᴄ🎵", url=f"{durl}"
+                            text="ʟᴜᴄᴋʏ ᴄʜᴀɴɴᴇʟ ❣️", url=f"https://t.me/maxopeditz"
                         ),
                     ],[
                         InlineKeyboardButton(
-                            text="✌️ Gʀᴏᴜᴘ", url=f"https://t.me/amazingnights"
+                            text="🖤 Gʀᴏᴜᴘ 🖤", url=f"https://t.me/terayaarhoomai"
                         ),
                     ]
                 ]
