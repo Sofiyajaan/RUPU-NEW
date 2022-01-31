@@ -12,23 +12,23 @@ async def start(_, message: Message):
     await message.reply_text(
         f"""**Hᴇʏ ɪᴛs {bn}** \n
 **I ᴀᴍ ʟᴀᴢʏ Aʙᴏᴜᴛ ᴛʏᴘɪɴɢ sᴏᴍᴇᴛʜɪɴɢ ɴᴇᴡ..ɪᴛᴢ ᴀ ʙᴏᴛ ᴍᴀᴅᴇ ғᴏʀ ᴘʟᴀʏ ᴍᴜsɪᴄ ɪɴ Vᴄ.😈❣️
-Dᴇᴠᴇʟᴏᴘᴇᴅ Bʏ : [𝚂•4•𝚂𝚑𝚒𝚟](https://t.me/shivamdemon)**.
+Dᴇᴠᴇʟᴏᴘᴇᴅ Bʏ : [ʟ•4•ʟᴜᴄᴋʏ](https://t.me/cute_boy701)**.
         """,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "💞 ᴏᴡɴᴇʀ ", url="https://t.me/ITZ_RUPU")
+                        "💞 ᴏᴡɴᴇʀ ", url="https://t.me/cute_boy701")
                   ],[
                     InlineKeyboardButton(
-                        "🔥Aɴʏ Pʀᴏʙʟᴇᴍ ", url="https://t.me/shivamdemon"
+                        "🔥Aɴʏ Pʀᴏʙʟᴇᴍ ", url="https://t.me/maxopeditz"
                     ),
                     InlineKeyboardButton(
-                        "🐬 Gʀᴏᴜᴘ ", url="https://t.me/amazingnights"
+                        "🐬 Gʀᴏᴜᴘ ", url="https://t.me/terayaarhoomai"
                     )
                 ],[ 
                     InlineKeyboardButton(
-                        "Aᴅᴅ ᴍʏ ʙᴏᴛ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴅᴀʀʟɪɴɢ🤭", url=f"https://t.me/itzrupu_vcbot?startgroup=true"
+                        "Aᴅᴅ ᴍʏ ʙᴏᴛ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴅᴀʀʟɪɴɢ🤭", url=f"https://t.me/luckyybbot?startgroup=true"
                     )]
             ]
         ),
@@ -42,7 +42,7 @@ async def gstart(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "😎 ᴜᴘᴅᴀᴛᴇs", url="https://t.me/Shivamdemon")
+                        "😎 ᴜᴘᴅᴀᴛᴇs", url="https://t.me/terayaarhoomai")
                 ]
             ]
         )
