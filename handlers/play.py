@@ -402,7 +402,7 @@ async def play(_, message: Message):
                             text="❣️ Oᴡɴᴇʀ", url=f"https://t.me/cute_boy701"
                         ),
                         InlineKeyboardButton(
-                            text="ʟᴜᴄᴋʏ ᴄʜᴀɴɴᴇʟ ❣️", url=f"https://t.me/maxopeditz"
+                            text="ᴄʜᴀɴɴᴇʟ ❣️", url=f"https://t.me/maxopeditz"
                         ),
                     ],[
                         InlineKeyboardButton(
@@ -429,7 +429,7 @@ async def play(_, message: Message):
                             text="❣️ Oᴡɴᴇʀ", url=f"https://t.me/cute_boy701"
                         ),
                         InlineKeyboardButton(
-                            text="ʟᴜᴄᴋʏ ᴄʜᴀɴɴᴇʟ ❣️", url=f"https://t.me/maxopeditz"
+                            text="ᴄʜᴀɴɴᴇʟ ❣️", url=f"https://t.me/maxopeditz"
                         ),
                     ],[
                         InlineKeyboardButton(
@@ -526,7 +526,7 @@ async def play(_, message: Message):
                             text="❣️ Oᴡɴᴇʀ", url=f"https://t.me/cute_boy701"
                         ),
                         InlineKeyboardButton(
-                            text="ʟᴜᴄᴋʏ ᴄʜᴀɴɴᴇʟ ❣️", url=f"https://t.me/maxopeditz"
+                            text="ᴄʜᴀɴɴᴇʟ ❣️", url=f"https://t.me/maxopeditz"
                         ),
                     ],[
                         InlineKeyboardButton(
@@ -609,7 +609,7 @@ async def play(_, message: Message):
 
             reply_markup=keyboard,
 
-            caption=f"☑️ **ɴᴀᴍᴇ:** [{title[:80]}]({url})\n⏱ **ᴅᴜʀᴀᴛɪᴏɴ:** `{duration}`\n💡 **ꜱᴛᴀᴛᴜꜱ:** `ᴘʟᴀʏɪɴɢ`\n"
+            caption=f"☑️ **ɴᴀᴍᴇ:** [{title}]({url})\n⏱ **ᴅᴜʀᴀᴛɪᴏɴ:** `{duration}`\n💡 **ꜱᴛᴀᴛᴜꜱ:** `ᴘʟᴀʏɪɴɢ`\n"
             + f"🎧 **ᴀᴅᴅᴇᴅ ʙʏ:** {message.from_user.mention}",
         )
 
