@@ -572,7 +572,7 @@ async def play(_, message: Message):
 
             photo="final.png",
 
-            caption=f"🏷 **ꜱᴏɴɢ ᴀᴅᴅᴇᴅ ᴛᴏ Qᴜᴇᴜᴇ »** `{position}`\n\n🏷 **ɴᴀᴍᴇ:** [{title[:80]}]({url})\n⏱ **ᴅᴜʀᴀᴛɪᴏɴ:** `{duration}`\n🎧 **ᴀᴅᴅᴇᴅ ʙʏ:** {message.from_user.mention}",
+            caption=f"🏷 **ꜱᴏɴɢ ᴀᴅᴅᴇᴅ ᴛᴏ Qᴜᴇᴜᴇ »** {position}\n\n🏷 **ɴᴀᴍᴇ:** ɴᴀᴍᴇ ᴋᴀ ᴋʏᴀᴀ ᴋʀᴏɢᴇ\n⏱ **ᴅᴜʀᴀᴛɪᴏɴ:** {duration}\n🎧 **ᴀᴅᴅᴇᴅ ʙʏ:** {message.from_user.mention}",
             reply_markup=keyboard,
 
         )
@@ -609,7 +609,7 @@ async def play(_, message: Message):
 
             reply_markup=keyboard,
 
-            caption=f"🏷 **ɴᴀᴍᴇ:** [{title}]\n⏱ **ᴅᴜʀᴀᴛɪᴏɴ:** `{duration}`\n🎧 **ᴀᴅᴅᴇᴅ ʙʏ:** {message.from_user.mention}",
+            caption=f"🏷 **ɴᴀᴍᴇ:** ɴᴀᴍᴇ ᴋᴀ ᴋʏᴀ ᴋʀᴏɢᴇ\n⏱ **ᴅᴜʀᴀᴛɪᴏɴ:** {duration}\n🎧 **ᴀᴅᴅᴇᴅ ʙʏ:** {message.from_user.mention}",
         )
 
         os.remove("final.png")
