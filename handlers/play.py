@@ -609,7 +609,7 @@ async def play(_, message: Message):
 
             reply_markup=keyboard,
 
-            caption=f"➲  **Music streaming started.**\n\n➲  **ᴘʟᴀʏɪɴɢ ʏᴏᴜʀ ꜱᴏɴɢ:**\n➲  **Status: ᴘʟᴀʏɪɴɢ🦋**\n**➲  ʟᴜᴄᴋʏ ᴜꜱᴇʀ:** {requester}",
+            caption=f"🏷 **ɴᴀᴍᴇ:** [{title}]\n⏱ **ᴅᴜʀᴀᴛɪᴏɴ:** `{duration}`\n🎧 **ᴀᴅᴅᴇᴅ ʙʏ:** {message.from_user.mention}",
         )
 
         os.remove("final.png")
