@@ -161,7 +161,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 
     draw.text(
 
-        (190, 670),
+        (190, 610),
 
         f"Powered By: Lucky(@cute_boy701)",
 
