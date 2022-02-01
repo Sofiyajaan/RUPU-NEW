@@ -156,14 +156,14 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 
     font = ImageFont.truetype("etc/font.otf", 60)
 
-    draw.text((150, 590), f"Playing by Lucky", (0, 0, 0), font=font)  
+    draw.text((150, 590), f"Playing by Lucky", (255, 255, 255), font=font)  
     draw.text((150, 540), f"Title: {title}", (0, 0, 0), font=font)
 
     draw.text(
 
-        (170, 640),
+        (150, 640),
 
-        f"Powered By: Lucky(@cute_boy701)",
+        f"Powered By: L4Lucky(@cute_boy701)",
 
         (0,0,0),
 
