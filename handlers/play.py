@@ -433,7 +433,7 @@ async def play(_, message: Message):
                         ),
                     ],[
                         InlineKeyboardButton(
-                            text="💜𓆩╊✘➻ ⃝🇱ᴜᴄᴋʏ 🇼ᴏʀʟᴅ ⃝➻✘╊𓆪💜", url=f"https://t.me/terayaarhoomai"
+                            text="𓆩╊✘➻ ⃝🇱ᴜᴄᴋʏ 🇼ᴏʀʟᴅ ⃝➻✘╊𓆪", url=f"https://t.me/terayaarhoomai"
                         ),
                     ]
                 ]
@@ -530,7 +530,7 @@ async def play(_, message: Message):
                         ),
                     ],[
                         InlineKeyboardButton(
-                            text="🖤 Gʀᴏᴜᴘ 🖤", url=f"https://t.me/terayaarhoomai"
+                            text="𓆩╊✘➻ ⃝🇱ᴜᴄᴋʏ 🇼ᴏʀʟᴅ ⃝➻✘╊𓆪", url=f"https://t.me/terayaarhoomai"
                         ),
                     ]
                 ]
